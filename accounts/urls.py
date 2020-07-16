@@ -5,8 +5,9 @@ from .views import(
     customer_view
 )
 
+app_name="crm"
 urlpatterns = [
-    path('', home_view),
-    path('products/', product_view),
-    path('customer/', customer_view),
+    path('', home_view, name="home"),
+    path('products/', product_view, name="products"),
+    path('customer/<str:id>/', customer_view, name="customer"),
 ]

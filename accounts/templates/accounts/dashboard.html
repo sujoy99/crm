@@ -13,10 +13,20 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Cusotmers</th>
                         <th>Orders</th>
                     </tr>
                 </thead>
+                <tbody>
+                    {% for customer in customers %}
+                        <tr>
+                            <td><a href="{{ customer.get_absolute_url }}" class="btn btn-sm btn-info">View</a></td>
+                            <td>{{ customer.name }}</td>
+                            <td>{{ customer.phone }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
             </table>
         </div>
     </div>
@@ -30,12 +40,23 @@
                 <thead>
                     <tr>
                         <th>Product</th>
-					    <th>Date Orderd</th>
-					    <th>Status</th>
-					    <th>Update</th>
-					    <th>Remove</th>
+                        <th>Date Orderd</th>
+                        <th>Status</th>
+                        <th>Update</th>
+                        <th>Remove</th>
                     </tr>
                 </thead>
+                <tbody>
+                  {% for order in orders %}
+                    <tr>
+                      <td>{{ order.product }}</td>
+                      <td>{{ order.date_created }}</td>
+                      <td>{{ order.status }}</td>
+                      <td><a href="" class="btn btn-info">Update</a></td>
+                      <td><a href="" class="btn btn-danger">Delete</a></td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
             </table>
         </div>
     </div>
