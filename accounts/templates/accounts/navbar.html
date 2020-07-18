@@ -14,4 +14,6 @@
         <a class="nav-item nav-link" href="{% url 'crm:products' %}">Products</a>
       </div>
     </div>
+    <span class="text-white mr-4 font-weight-bold">Hello, {{ request.user }}</span>
+    <span><a class="btn btn-primary" href="{% url 'crm:logout' %}">Logout</a></span>
   </nav>

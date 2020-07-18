@@ -1,5 +1,5 @@
 {% extends 'accounts/base.html' %}
-
+{% load static %}
 {% block content %}
 {% include 'accounts/status.html' %}
 
@@ -9,13 +9,13 @@
         <h5>CUSTOMERS :</h5>
         <hr>
         <div class="card card-body">
-            <a href="#" class="btn btn-primary btn-block btn-sm">Create Customer</a>
+            <a href="" class="btn btn-primary btn-block btn-sm">Create Customer</a>
             <table class="table">
                 <thead>
                     <tr>
                         <th></th>
                         <th>Cusotmers</th>
-                        <th>Orders</th>
+                        <th>Phone</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,7 +35,6 @@
         <h5>LAST 5 ORDERS :</h5>
         <hr>
         <div class="card card-body">
-            <a href="#" class="btn btn-primary btn-block btn-sm">Create Order</a>
             <table class="table">
                 <thead>
                     <tr>
@@ -52,8 +51,8 @@
                       <td>{{ order.product }}</td>
                       <td>{{ order.date_created }}</td>
                       <td>{{ order.status }}</td>
-                      <td><a href="" class="btn btn-info">Update</a></td>
-                      <td><a href="" class="btn btn-danger">Delete</a></td>
+                      <td><a href="{{ order.get_absolute_url }}" class="btn btn-info">Update</a></td>
+                      <td><a href="{{ order.get_delete_url }}" class="btn btn-danger">Delete</a></td>
                     </tr>
                   {% endfor %}
                 </tbody>

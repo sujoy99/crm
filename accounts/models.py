@@ -13,6 +13,9 @@ class Customer(models.Model):
 
     def get_absolute_url(self):
         return reverse("crm:customer", kwargs={'id':self.id})
+    
+    def get_order_url(self):
+        return reverse("crm:create-order", kwargs={'id':self.id})
 
 class Tag(models.Model):
     name = models.CharField(max_length=120, null=True)
@@ -47,4 +50,14 @@ class Order(models.Model):
     product = models.ForeignKey(Product, null=True, on_delete=models.SET_NULL)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     status =  models.CharField(max_length=120, null=True, choices=STATUS)
+    note =  models.CharField(max_length=120, null=True)
+
+    def get_absolute_url(self):
+        return reverse("crm:update-order", kwargs={'id':self.id})
+    
+    def get_delete_url(self):
+        return reverse("crm:delete-order", kwargs={'id':self.id})
+
+    def __str__(self):
+        return self.product.name
     
