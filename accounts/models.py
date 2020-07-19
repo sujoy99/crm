@@ -3,16 +3,18 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 # Create your models here.
 class Customer(models.Model):
-    user = models.OneToOneField(User, null=True,blank=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=120, null=True)
     phone = models.CharField(max_length=120, null=True)
     email = models.EmailField(null=True)
-    profile_pic = models.ImageField(default='images/profile-pic.png', null
+    profile_pic = models.ImageField(default='profile-pic.png', null
     =True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
+
     def __str__(self):
-        return (self.user.username)
+        return (self.name)
+
 
     def get_absolute_url(self):
         return reverse("crm:customer", kwargs={'id':self.id})

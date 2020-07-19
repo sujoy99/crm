@@ -35,7 +35,7 @@ def registration_view(request):
         user.groups.add(group)
 
         # assining into customer model registered user
-        Customer.objects.create(user=user)
+        Customer.objects.create(user=user, name=user.username, email=user.email)
         # showing temporary flash message
         messages.success(request, "Account was created for " + username)
         return redirect('crm:login')
@@ -70,11 +70,11 @@ def logout_view(request):
 @allowed_users(allowed_roles=['customer'])
 def user_view(request):
     template_name = "accounts/user.html"
-    print(request.user.customer.order_set.all())
+    # print(request.user.customer.order_set.all())
     orders = request.user.customer.order_set.all()
     total_order = orders.count()
-    delivered = Order.objects.filter(status='Delivered').count() 
-    pending = Order.objects.filter(status='Pending').count() 
+    delivered = orders.filter(status='Delivered').count() 
+    pending = orders.filter(status='Pending').count() 
     context = {
         'orders' : orders,
         'total_order' : total_order,
@@ -90,7 +90,7 @@ def account_settings_view(request):
     
     # grab logged in user specific user
     customer = request.user.customer
-
+    # print(customer)
     # request.FILES for file uploading
     form = CustomerForm(instance=customer)
     if request.method == "POST":
@@ -113,8 +113,8 @@ def home_view(request):
     customers = Customer.objects.all()
     orders = Order.objects.all()
     total_order = orders.count()
-    delivered = Order.objects.filter(status='Delivered').count() 
-    pending = Order.objects.filter(status='Pending').count() 
+    delivered = orders.filter(status='Delivered').count() 
+    pending = orders.filter(status='Pending').count() 
     context = {
         'customers' : customers,
         'orders' : orders,

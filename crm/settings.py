@@ -133,7 +133,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'staticfiles')
 ]
 
-# MEDIA_ROOT = os.path.join(LOCAL_STATIC_CDN_PATH, 'media')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles/images')
+MEDIA_ROOT = os.path.join(LOCAL_STATIC_CDN_PATH, 'media')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles/images')
 MEDIA_URL = '/media/'
 # MEDIA_URL = '/images/'
