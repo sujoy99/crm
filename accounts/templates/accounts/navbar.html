@@ -9,11 +9,22 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      {% if request.user.is_staff %}
       <div class="navbar-nav">
         <a class="nav-item nav-link active" href="{% url 'crm:home'%}">Dashboard</a>
         <a class="nav-item nav-link" href="{% url 'crm:products' %}">Products</a>
       </div>
+      {% else %}
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="{% url 'crm:account'%}">Settings</a>
+      </div>
+      {% endif %}
     </div>
     <span class="text-white mr-4 font-weight-bold">Hello, {{ request.user }}</span>
+    <span class="text-white mr-4 font-weight-bold"><img class="profile-pic" src="{{request.user.customer.profile_pic.url }}" height="40px" width="40px" ></span>
     <span><a class="btn btn-primary" href="{% url 'crm:logout' %}">Logout</a></span>
+    
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button> -->
   </nav>

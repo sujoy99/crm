@@ -3,6 +3,8 @@ from .views import(
     home_view,
     product_view,
     customer_view,
+    user_view,
+    account_settings_view,
     create_order_view,
     update_order_view,
     delete_order_view,
@@ -19,6 +21,8 @@ urlpatterns = [
     path('logout/', logout_view, name='logout'),
 
     path('', home_view, name="home"),
+    path('user/', user_view, name="user-page"),
+    path('settings/', account_settings_view, name="account"),
     path('products/', product_view, name="products"),
     path('customer/<int:id>/', customer_view, name="customer"),
 
