@@ -1,4 +1,5 @@
 from django.urls import path
+from django.contrib.auth import views as auth_views
 from .views import(
     home_view,
     product_view,
@@ -30,5 +31,16 @@ urlpatterns = [
     path('create-order/<int:id>/', create_order_view, name="create-order"),
     path('update-order/<int:id>/', update_order_view, name="update-order"),
     path('delete-order/<int:id>/', delete_order_view, name="delete-order"),
+
+    # path('reset_password/', auth_views.PasswordResetView.as_view(template_name="accounts/password_reset.html"), name="password_reset"),
+
+    # path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name="accounts/password_reset_sent.html"), name="password_reset_done"),
+    
+    # path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="accounts/password_reset_form.html"), name="password_reset_confirm"),
+    
+    # path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name="accounts/password_reset_done.html"), name="password_reset_complete"),
+
+    # ---> add this in main url
+
     
 ]

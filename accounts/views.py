@@ -27,15 +27,17 @@ def registration_view(request):
     if form.is_valid():
         user = form.save()
 
-        # to show username in his dashboard
+        # to show username in flash message
         username = form.cleaned_data.get("username")
 
         # default assining in customer group 
-        group = Group.objects.get(name='customer')
-        user.groups.add(group)
+        # group = Group.objects.get(name='customer')
+        # user.groups.add(group) --
 
         # assining into customer model registered user
-        Customer.objects.create(user=user, name=user.username, email=user.email)
+        # Customer.objects.create(user=user, name=user.username, email=user.email)
+            # above code are implemented using signals
+        
         # showing temporary flash message
         messages.success(request, "Account was created for " + username)
         return redirect('crm:login')
